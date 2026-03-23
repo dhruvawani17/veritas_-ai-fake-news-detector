@@ -1,0 +1,5 @@
+{
+  "name": "Veritas: AI Fake News Detector",
+  "description": "A sophisticated tool that uses advanced AI to analyze news articles for misinformation, bias, and factual accuracy.",
+  "requestFramePermissions": []
+}
