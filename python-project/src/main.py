@@ -15,7 +15,7 @@ def main():
         # Allow the user to specify their cloud/local URL and API key
         base_url = st.text_input("API Base URL", "http://localhost:11434/v1")
         api_key_input = st.text_input("API Key", type="password", help="Enter your cloud API key here")
-        model_name = st.text_input("Model Name (e.g., qwen2.5:32b, llama3.1)", "qwen2.5:32b")
+        model_name = st.text_input("Model Name (e.g., qwen2.5:32b, llama3.1)", "openai/gpt-oss-120b")
 
     st.markdown("""
     ### Analyze News Content
