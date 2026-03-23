@@ -111,7 +111,7 @@ def main():
                                 st.write(f"- {flag}")
                                 
                     if search_results:
-                        st.subheader("Verified Sources (DuckDuckGo Search)")
+                        st.subheader("Verified Sources")
                         for res in search_results:
                             st.write(f"- [{res.get('title')}]({res.get('href')})")
                                     
