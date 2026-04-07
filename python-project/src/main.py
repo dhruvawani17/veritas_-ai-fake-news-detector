@@ -43,12 +43,21 @@ def download_youtube_audio(url):
     output_template = os.path.join(temp_dir, "%(id)s.%(ext)s")
 
     ydl_opts = {
-        "format": "bestaudio/best",
+        "format": "m4a/bestaudio/best",
         "outtmpl": output_template,
         "noplaylist": True,
         "quiet": True,
         "no_warnings": True,
-        "extractor_args": {"youtube": {"player_client": ["android", "ios", "web_creator"]}},
+        "nocheckcertificate": True,
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["android", "ios", "tv", "web"],
+                "player_skip": ["webpage", "configs", "js"]
+            }
+        },
+        "http_headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        }
     }
     
     # If a cookies.txt file is provided in the root directory, use it to bypass the bot check
