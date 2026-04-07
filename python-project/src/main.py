@@ -60,9 +60,17 @@ def download_youtube_audio(url):
         }
     }
     
-    # If a cookies.txt file is provided in the root directory, use it to bypass the bot check
-    if os.path.exists("cookies.txt"):
-        ydl_opts["cookiefile"] = "cookies.txt"
+    # If a cookies.txt file is provided in the root directory, or via Streamlit Secrets, use it
+    cookies_path = "cookies.txt"
+    if "YOUTUBE_COOKIES" in st.secrets:
+        # Write the secret cookies out to a temporary file
+        temp_cookies = os.path.join(temp_dir, "cookies.txt")
+        with open(temp_cookies, "w") as f:
+            f.write(st.secrets["YOUTUBE_COOKIES"])
+        cookies_path = temp_cookies
+
+    if os.path.exists(cookies_path):
+        ydl_opts["cookiefile"] = cookies_path
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=True)
