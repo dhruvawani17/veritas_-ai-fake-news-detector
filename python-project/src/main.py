@@ -48,8 +48,12 @@ def download_youtube_audio(url):
         "noplaylist": True,
         "quiet": True,
         "no_warnings": True,
-        "extractor_args": {"youtube": {"player_client": ["web_creator", "web", "mweb"], "player_skip": ["webpage", "configs"]}},
+        "extractor_args": {"youtube": {"player_client": ["android", "ios", "web_creator"]}},
     }
+    
+    # If a cookies.txt file is provided in the root directory, use it to bypass the bot check
+    if os.path.exists("cookies.txt"):
+        ydl_opts["cookiefile"] = "cookies.txt"
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=True)
